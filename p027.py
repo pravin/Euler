@@ -9,7 +9,7 @@ import math
 
 class p27:
     last_num = 21
-    primes = [2,3,5,7,11,13,17,19]
+    primes = [2, 3, 5, 7, 11, 13, 17, 19]
 
     def populate_primes(self, num):
         """ Returns all prime nums from 0 to num, including num """
@@ -18,10 +18,12 @@ class p27:
 
         if num > self.primes[-1]:
             limit = math.ceil(math.sqrt(num))
-            for n in xrange(self.last_num, num+1, 2):
+            for n in xrange(self.last_num, num + 1, 2):
                 is_prime = True
                 for p in self.primes:
-                    if n % p == 0 or p > limit:
+                    if p > limit:
+                        break
+                    if n % p == 0:
                         is_prime = False
                         break
                 if is_prime:
@@ -58,12 +60,13 @@ class p27:
 if __name__ == '__main__':
     max_count = 0
     p = p27()
-    
+    result = ()
     for a in xrange(-999, 1000):
         for b in xrange(-999, 1000):
             r = p.find_primes(a, b)
             if r > max_count:
                 max_count = r
-                print a, b, max_count, a * b#, len(p.primes), p.primes
+                result = (a * b, a, b, max_count)
+    print result[0]
 
     #print p.find_primes(-79, 1601)
