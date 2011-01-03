@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 # Pravin Paratey (http://pravin.insanitybegins.com)
 #
+# Why do we check only 6 digits?
+#
+# Because 9^5 = 59049
+#
+# 4 digit number = 4 * 9^5 = 236196
+# 5 digit number = 5 * 9^5 = 295245
+# 6 digit number = 6 * 9^5 = 354294
+# 7 digit number = 7 * 9^5 = 413343 
+#                  (which is less than the smallest 7-digit number 1,111,111)
+#
 # Answer: 443839
 
 
