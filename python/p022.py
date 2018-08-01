@@ -3,7 +3,7 @@
 #
 # Answer: 871198282
 
-fp = open('names.txt')
+fp = open('../data/names.txt')
 names = fp.read().strip().upper().split('","')
 # Clean names
 names[0] = names[0][1:]
