@@ -13,25 +13,29 @@ It is possible to make £2 in the following way:
 How many different ways can £2 be made using any number of coins?
 """
 
-coins = (1, 2, 5, 10, 20, 50, 100, 200)
-memo = {}
+class CountWays:
+    memo = {}
 
-def count_ways(num, coins_arr):
-    """ Counts the ways in which one can arrive at num using coins """
-    if (num, coins_arr) in memo:
-        return memo[(num, coins_arr)]
-    if num == 0:
-        return 1
-    if len(coins_arr) == 0:
-        return 0
+    def count_ways(self, num, coins_arr):
+        """ Counts the ways in which one can arrive at num using coins """
+        if (num, coins_arr) in self.memo:
+            return self.memo[(num, coins_arr)]
+        if num == 0:
+            return 1
+        if len(coins_arr) == 0:
+            return 0
 
-    total = 0
-    for i in range(len(coins_arr)):
-        if num < coins_arr[i]:
-            break
-        total += count_ways(num - coins_arr[i], coins_arr[i:])
+        total = 0
+        for i in range(len(coins_arr)):
+            if num < coins_arr[i]:
+                break
+            total += self.count_ways(num - coins_arr[i], coins_arr[i:])
 
-    memo[(num, coins_arr)] = total
-    return total
+        self.memo[(num, coins_arr)] = total
+        return total
 
-print(count_ways(200, coins))
+if __name__ == '__main__':
+    coins = (1, 2, 5, 10, 20, 50, 100, 200)
+
+    c = CountWays()
+    print(c.count_ways(200, coins))
