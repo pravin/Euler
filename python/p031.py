@@ -13,10 +13,13 @@ It is possible to make £2 in the following way:
 How many different ways can £2 be made using any number of coins?
 """
 
-coins = [1, 2, 5, 10, 20, 50, 100, 200]
+coins = (1, 2, 5, 10, 20, 50, 100, 200)
+memo = {}
 
 def count_ways(num, coins_arr):
     """ Counts the ways in which one can arrive at num using coins """
+    if (num, coins_arr) in memo:
+        return memo[(num, coins_arr)]
     if num == 0:
         return 1
     if len(coins_arr) == 0:
@@ -27,7 +30,8 @@ def count_ways(num, coins_arr):
         if num < coins_arr[i]:
             break
         total += count_ways(num - coins_arr[i], coins_arr[i:])
-    
+
+    memo[(num, coins_arr)] = total
     return total
 
 print(count_ways(200, coins))
